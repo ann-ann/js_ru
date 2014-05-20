@@ -1,0 +1,16 @@
+<%= render 'shared/flash', flash: flash %>
+<%= render 'shared/errors', object: @user %>
+
+<%= form_for(@user) do |f| %>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :password_digest %><br>
+    <%= f.text_field :password_digest %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
