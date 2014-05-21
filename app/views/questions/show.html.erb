@@ -22,22 +22,14 @@
 <span>написать <%= fa_icon 'long-arrow-down' %></span>
 <hr class="divider">
 
+<!-- TODO refactor to render answers_answer -->
 <% if @question.answers.present? %>
-  <% @question.answers.each do |a| %>
-    <span ><%= a.text %></span>
-    <hr class="divider">
-  <% end %>
+  <%= render @question.answers %>
 <% end %>
 
- <hr class="divider">
-<%= fa_icon 'pencil-square-o ' %> Написать ответ:
-<%= form_for([@question, @question.answers.build]) do |f| %>
-  <div class="controls">
-    <%= f.text_field :text %>
-  </div>
+<%= render 'shared/errors', object: @question %>
+<%= render 'answers/form'%>
 
-  <%= f.submit class: 'btn btn-success' %>
 
-<% end %>
 
 

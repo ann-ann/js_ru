@@ -30,9 +30,9 @@ class AnswersController < ApplicationController
 
     respond_to do |format|
       if @answer.save
-        format.html { redirect_to question_path(@question), notice: 'Answer was successfully created.' }
+        format.html { redirect_to question_path(@question) }
       else
-        format.html { render action: 'new' }
+        format.html { redirect_to question_path(@question), notice: 'Invalid entry' }
       end
     end
   end
