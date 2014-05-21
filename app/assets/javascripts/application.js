@@ -12,6 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.turbolinks
+//= require chosen-jquery
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
+
+$(document).ready( function () {
+  console.log('here');
+  $(".chzn-select").chosen();
+});

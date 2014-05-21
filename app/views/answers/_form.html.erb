@@ -1,10 +1,12 @@
 <%= render 'shared/flash', flash: flash %>
 
- <hr class="divider">
 <%= fa_icon 'pencil-square-o ' %> Написать ответ:
 <%= form_for([@question, @question.answers.build]) do |f| %>
-  <div class="controls">
+  <div class="field">
     <%= f.text_area :text, rows: 6, maxlength: 400 %>
   </div>
-  <%= f.submit class: 'btn btn-success' %>
+
+  <div class="actions">
+    <%= f.submit class: 'btn btn-success' %>
+  </div>
 <% end %>

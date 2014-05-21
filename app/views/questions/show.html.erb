@@ -4,30 +4,28 @@
   <h4><%= @question.title %></h4>
   <span class="pull-right" id="rating"><%= @question.rating %></span>
   <%= fa_icon 'comment' %> <%= @question.answers.count %>
-  <%= fa_icon 'eye' %> <%= @question.views_count %>
-  <%= fa_icon 'user' %> <%= User.first.name %>
-  <%= fa_icon 'clock-o' %> <%= distance_of_time_in_words(Time.now, @question.created_at) %> ago</br></br>
+  <%= fa_icon 'eye' %> <%= @question.views.count %>
+  <%= fa_icon 'user' %> <%= @question.user.name %>
+  <%= fa_icon 'clock-o' %> <%= distance_of_time_in_words(Time.now, @question.created_at) %> назад</br></br>
   <div><%= @question.text %></div></br>
   <% if @question.tags.present? %>
     <% @question.tags.each do |t| %>
       <span class="tag"><%= t.name %></span>
     <% end %>
   <% end %>
-  <span class="pull-right"><%= link_to 'Edit', edit_question_path(@question) %></span>
+  <span class="pull-right"><%= link_to 'Редактировать', edit_question_path(@question) if @question.user == @current_user %></span>
   <hr class="divider">
   </div>
 </div>
 
-<span><%= fa_icon 'comment' %>Ответы(<%= @question.answers.count %>)</span>
+<span><%= fa_icon 'comment' %> Ответы(<%= @question.answers.count %>)</span>
 <span>написать <%= fa_icon 'long-arrow-down' %></span>
 <hr class="divider">
 
-<!-- TODO refactor to render answers_answer -->
 <% if @question.answers.present? %>
   <%= render @question.answers %>
 <% end %>
 
-<%= render 'shared/errors', object: @question %>
 <%= render 'answers/form'%>
 
 

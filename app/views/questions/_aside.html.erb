@@ -3,15 +3,12 @@
   <li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Вопросы<b class="caret"></b></a>
     <ul class="dropdown-menu">
-      <li><a href="#">Все</a></li>
+      <li><%= link_to 'Все', questions_path%></li>
       <li><a href="#">Моя лента</a></li>
       <li><a href="#">Подписан</a></li>
       <li><a href="#">Мои</a></li>
     </ul>
   </li>
-  <li><a href="#buttonGroups">Теги</a></li>
-  <li><a href="#buttonDropdowns">Пользователи</a></li>
-
+  <li><%= link_to 'Теги', tags_path%></li>
+  <li><%= link_to 'Пользователи', users_path%></li>
 </ul>
-
-

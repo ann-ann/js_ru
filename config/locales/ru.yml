@@ -1,0 +1,25 @@
+ru:
+  activerecord:
+    attributes:
+      question:
+        title: 'Вопрос'
+        text: 'Описание'
+        tag_ids: 'Теги'
+        tags: 'Теги'
+
+  helpers:
+    submit:
+      question:
+        create: 'Создать вопрос'
+        update: 'Готово'
+      answer:
+        create: 'Опубликовать'
+  messages:
+    questions:
+      create: 'Вопрос опубликован'
+      update: 'Вопрос отредактирован'
+    answers:
+      update:  'Ответ отредактирован'
+      destroy: 'Ответ удален'
+      errors:
+        create: 'Ответ не введен'

@@ -1,19 +1,24 @@
-<%= render 'shared/flash', flash: flash %>
 <%= render 'shared/errors', object: @question %>
-
 <%= render 'aside' %>
 
 <%= form_for @question  do |f| %>
   <div class="field">
-    <%= f.label :title %><br>
+    <%= f.label :title %>
     <%= f.text_field :title %>
   </div>
+
   <div class="field">
-    <%= f.label :text %><br>
+    <%= f.label :text %>
     <%= f.text_area :text, rows: 6, class: 'span8', maxlength: 400 %>
   </div>
 
+  <div class="field">
+    <%= f.label :tag_ids %>
+    <%= f.collection_select :tag_ids, Tag.all, :id, :name, { include_hidden: false },
+    { multiple: true, class: 'chzn-select',data: { placeholder: 'Выбери теги'} } %>
+  </div>
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: "btn btn-default" %>
   </div>
 <% end %>
