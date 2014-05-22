@@ -65,6 +65,9 @@ GEM
       railties (>= 3.1.0)
       turbolinks
     json (1.8.1)
+    kaminari (0.15.1)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     less (2.4.0)
       commonjs (~> 0.2.7)
     less-rails (2.4.2)
@@ -156,6 +159,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   jquery-turbolinks
+  kaminari
   less-rails
   pg
   rails (= 4.0.2)

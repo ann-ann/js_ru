@@ -6,5 +6,15 @@ class Question < ActiveRecord::Base
 
   validates_presence_of :title, :text, :tags
 
-  default_scope { order('created_at DESC') }
+  paginates_per 10
+
+  scope :with_counted_answers, -> {
+    select('questions.*, COUNT(answers.id) as answers_count')
+    .joins('LEFT OUTER JOIN answers ON answers.question_id = questions.id')
+    .group('questions.id')
+  }
+
+  scope :without_answers, -> (apply) {
+    having('count(answers.id) = 0') if apply
+  }
 end

@@ -19,6 +19,9 @@
 //= require_tree .
 
 $(document).ready( function () {
-  console.log('here');
   $(".chzn-select").chosen();
 });
+
+// $('.question-sort .btn-group .btn').click( function(e) {
+// console.log(e.currentTarget);
+// });
