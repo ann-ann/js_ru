@@ -1,0 +1,20 @@
+<div>
+  <h4><%= link_to question.title, question  %></h4>
+  <span class="pull-right" id="rating"><%= question.rating %></span>
+  <% if question.is_solved %>
+    <span class="badge badge-sml">Решено</span>
+  <% end %>
+  <%= fa_icon 'comment' %> <%= question.answers.count %>
+  <%= fa_icon 'eye' %> <%= question.views.count %>
+  <%= fa_icon 'user' %> <%= question.user.name %>
+  <%= fa_icon 'clock-o' %> <%= distance_of_time_in_words(Time.now, question.created_at) %> назад</br></br>
+  <% if action_name != 'index' %>
+    <div><%= question.text %></div></br>
+  <% end %>
+  <% if question.tags.present? %>
+    <% question.tags.each do |t| %>
+      <span class="tag"><%= t.name %></span>
+    <% end %>
+  <% end %>
+  <hr class="divider">
+</div>

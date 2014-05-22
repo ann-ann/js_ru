@@ -18,11 +18,23 @@
     { multiple: true, class: 'chzn-select',data: { placeholder: 'Выбери теги'} } %>
   </div>
 
+
+  <%= hidden_field_tag :tags_names %>
   <div class="actions">
     <%= f.submit class: "btn btn-default" %>
   </div>
+
 <% end %>
 
-<javascript>
-
-</javascript>
+<script type="text/javascript">
+  $('#question_tag_ids_chosen').find('input').on('keyup', function(e) {
+    if (e.which == 13 && $('#question_tag_ids_chosen').find('input').val() != '') {
+      names = []
+      $('.search-choice').each(function( ) {
+        names.push($( this ).text());
+      });
+      $('#tags_names').text(names);
+      console.log($('#tags_names').text());
+    }
+  });
+</script>

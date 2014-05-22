@@ -5,6 +5,12 @@ JsRu::Application.routes.draw do
     resources :answers
   end
 
+  resources :tags do
+    member do
+      post :create
+    end
+  end
+
   resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.

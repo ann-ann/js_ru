@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
+  before_action :create_tags_unless_exist, only: [:create]
 
   def index
     @questions = Question.search(params[:search]).page(params[:page])
@@ -39,6 +40,13 @@ class QuestionsController < ApplicationController
     redirect_to questions_url
   end
 
+  def create_tags_unless_exist
+   if params[:tags_names]
+      names = params[:tags_names].split(',')
+      names.each { |n| Tag.create(name: n) unless Tag.find_by_name(n).present? }
+    end
+  end
+
   private
 
     def set_question
@@ -46,6 +54,6 @@ class QuestionsController < ApplicationController
     end
 
     def question_params
-      params.require(:question).permit(:title, :text, :rating, :user_id, tag_ids: [])
+      params.require(:question).permit(:title, :text, :rating, :user_id, :tags_names, tag_ids: [])
     end
 end
