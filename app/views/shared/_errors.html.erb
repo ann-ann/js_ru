@@ -1,6 +1,6 @@
 <% if object.errors.any? %>
   <div class="alert alert-block alert-error">
-    <% object.errors.full_messages.each do |msg| %>
+    <% object.errors.each do |field, msg| %>
       <li><%= msg %>.</li>
     <% end %>
   </div>

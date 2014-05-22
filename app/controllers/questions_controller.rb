@@ -1,13 +1,8 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
-  helper_method :sort_column, :sort_direction
 
   def index
-    @questions = Question
-      .with_counted_answers
-      .order(sort_column + " " + sort_direction)
-      .without_answers(params[:without_answers])
-      .page(params[:page])
+    @questions = Question.search(params[:search]).page(params[:page])
   end
 
   def show
@@ -48,14 +43,6 @@ class QuestionsController < ApplicationController
 
     def set_question
       @question = Question.find(params[:id])
-    end
-
-    def sort_column
-      params[:sort] ||= "created_at"
-    end
-
-    def sort_direction
-      %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
     end
 
     def question_params

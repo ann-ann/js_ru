@@ -22,6 +22,11 @@ $(document).ready( function () {
   $(".chzn-select").chosen();
 });
 
-// $('.question-sort .btn-group .btn').click( function(e) {
-// console.log(e.currentTarget);
+// $(document).ready( function () {
+//   $('.chzn-select').on('change', function(evt, params) {
+//     $('.chzn-select').append('<option value="1">Bar</option>');
+//     $('.chzn-select').val('Bar');
+//     $('.chzn-select').trigger("chosen:updated");
+//   });
 // });
+

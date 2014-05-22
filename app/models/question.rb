@@ -9,12 +9,27 @@ class Question < ActiveRecord::Base
   paginates_per 10
 
   scope :with_counted_answers, -> {
-    select('questions.*, COUNT(answers.id) as answers_count')
-    .joins('LEFT OUTER JOIN answers ON answers.question_id = questions.id')
+    joins('LEFT OUTER JOIN answers ON answers.question_id = questions.id')
     .group('questions.id')
   }
 
-  scope :without_answers, -> (apply) {
-    having('count(answers.id) = 0') if apply
+  scope :without_answers, -> {
+    with_counted_answers
+    .having('count(answers.id) = 0')
   }
+
+  scope :hot, -> {
+    with_counted_answers
+    .having('count(answers.id) > 0')
+    .where("answers.created_at > ?", 1.month.ago)
+    # TODO add subscriptions counting
+  }
+
+  def self.search(search)
+   if search
+     Question.try(search.to_sym)
+    else
+      Question.order('created_at desc')
+    end
+  end
 end

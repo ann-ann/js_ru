@@ -6,7 +6,14 @@ ru:
         text: 'Описание'
         tag_ids: 'Теги'
         tags: 'Теги'
-
+    errors:
+      messages:
+        blank: "Введите %{attribute}"
+      models:
+        question:
+          attributes:
+            tags:
+              blank: "Выберите теги"
   helpers:
     submit:
       question:
@@ -23,3 +30,4 @@ ru:
       destroy: 'Ответ удален'
       errors:
         create: 'Ответ не введен'
+

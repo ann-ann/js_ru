@@ -1,9 +1,9 @@
 
 <div class="question-sort pull-right" >
   <div class="btn-group" >
-    <button type="button" class="btn btn-default"><%= sortable 'created_at', 'Новые' %></button>
-    <button type="button" class="btn btn-default"><%= sortable 'answers_count', 'Горячие' %></button>
-    <button type="button" class="btn btn-default"><%= link_to 'Без ответов',questions_path(without_answers: true) %></button>
+    <%= link_to 'Новые', questions_path, class: 'btn btn-default' %>
+    <%= link_to 'Горячие', questions_path(search: :hot), class: 'btn btn-default' %>
+    <%= link_to 'Без ответов', questions_path(search: :without_answers), class: 'btn btn-default' %>
   </div>
 </div>
 
