@@ -16,5 +16,8 @@
       <span class="tag"><%= t.name %></span>
     <% end %>
   <% end %>
+  <% if action_name != 'index' %>
+    <span class="pull-right"><%= link_to 'Редактировать', edit_question_path(@question) %></span>
+  <% end %>
   <hr class="divider">
 </div>

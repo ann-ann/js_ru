@@ -26,11 +26,13 @@ $(document).ready( function() {
   var input = $('#question_tag_ids_chosen').find('input')
   select.on('chosen:no_results',function(evt, params){
     input.on('keyup', function(e) {
-      if (e.which == 13 || e.which == 188 || e.key == ',' && input.val() != '' && input.val().slice(-1) == ',') {
-        var value = params.chosen.search_results.find('span').text().replace(/[`~!@#$%^&*()|+=?;:'",.<>\{\}\[\]\\\/]/gi, '');;
-        var index = parseInt($('#question_tag_ids').find('option').last().val()) + 1
-        select.append(new Option(value, index,true).outerHTML);
-        select.trigger("chosen:updated");
+      if (e.which == 13 || e.which == 188 || e.key == ',') {
+        if(input.val() != '' && input.val().slice(-1) == ',') {
+          var value = params.chosen.search_results.find('span').text().replace(/[`~!@#$%^&*()|+=?;:'",.<>\{\}\[\]\\\/]/gi, '');;
+          var index = parseInt($('#question_tag_ids').find('option').last().val()) + 1
+          select.append(new Option(value, index,true).outerHTML);
+          select.trigger("chosen:updated");
+        }
       }
     });
   });
