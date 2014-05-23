@@ -5,6 +5,6 @@ class ApplicationController < ActionController::Base
 
 # stub for now
   def current_user
-    @current_user ||= User.first
+    @current_user ||= User.last
   end
 end
