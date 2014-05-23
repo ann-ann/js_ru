@@ -16,7 +16,16 @@
       <span class="tag"><%= t.name %></span>
     <% end %>
   <% end %>
-  <% if action_name != 'index' %>
+
+  <% if action_name != 'index' && @current_user == @question.user %>
+    <% unless @question.is_solved %>
+      <%= form_for question, url: solve_question_path, method: :get, html: { class: 'autosubmit-form' } do |f| %>
+        <div class="control-group">
+          <%= f.check_box :is_solved %>
+         <label class="btn btn-default pull-right" for="question_is_solved">Решено</label>
+        </div>
+      <% end %>
+    <% end %>
     <span class="pull-right"><%= link_to 'Редактировать', edit_question_path(@question) %></span>
   <% end %>
   <hr class="divider">

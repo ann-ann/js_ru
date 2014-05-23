@@ -2,6 +2,7 @@ JsRu::Application.routes.draw do
   resources :tags
 
   resources :questions do
+    get :solve, on: :member
     resources :answers
   end
 

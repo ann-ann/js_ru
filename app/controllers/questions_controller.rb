@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: [:show, :edit, :update, :destroy]
+  before_action :set_question, only: [:show, :edit, :update, :destroy, :solve]
   before_action :create_tags_unless_exist, only: [:create]
 
   def index
@@ -47,6 +47,11 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def solve
+    @question.update(question_params)
+    redirect_to @question
+  end
+
   private
 
     def set_question
@@ -54,6 +59,6 @@ class QuestionsController < ApplicationController
     end
 
     def question_params
-      params.require(:question).permit(:title, :text, :rating, :user_id, :tags_names, tag_ids: [])
+      params.require(:question).permit(:title, :text, :rating, :user_id, :tags_names, :is_solved, tag_ids: [])
     end
 end

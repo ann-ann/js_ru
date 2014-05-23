@@ -47,3 +47,11 @@ $(document).ready(function(){
     });
   });
 });
+
+$(document).ready(function(){
+  $(".autosubmit-form").each(function(index, item) {
+    $('input, select', item).change(function(e){
+      $(item).submit();
+    });
+  });
+});
