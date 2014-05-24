@@ -1,5 +1,5 @@
 class TagsController < ApplicationController
-  before_action :set_tag, only: [:show, :edit, :update, :destroy]
+  before_action :set_tag, only: [:show, :edit, :update, :destroy, :subscribe]
 
   def index
     @tags = Tag.all
@@ -40,6 +40,12 @@ class TagsController < ApplicationController
 
     flash[:success] = t action_name, scope: [:messages, controller_name.to_sym]
     redirect_to tags_url
+  end
+
+  def subscribe
+    @tag.subscibe_unsubscribe(@current_user)
+
+    redirect_to tags_path
   end
 
   private

@@ -19,19 +19,27 @@
 //= require_tree .
 
 $(document).ready( function() {
+
   select = $(".chzn-select").chosen({
     no_results_text: "Создать новый тег: ",
+    display_selected_options: false
   });
 
   var input = $('#question_tag_ids_chosen').find('input')
+
   select.on('chosen:no_results',function(evt, params){
     input.on('keyup', function(e) {
-      if (e.which == 13 || e.which == 188 || e.key == ',') {
-        if(input.val() != '' && input.val().slice(-1) == ',') {
+      if (e.which == 13 || e.key == ',' || input.val().slice(-1) == ',') {
+        if(input.val() != '') {
           var value = params.chosen.search_results.find('span').text().replace(/[`~!@#$%^&*()|+=?;:'",.<>\{\}\[\]\\\/]/gi, '');;
           var index = parseInt($('#question_tag_ids').find('option').last().val()) + 1
           select.append(new Option(value, index,true).outerHTML);
           select.trigger("chosen:updated");
+
+          $('.active-result').each(function( ) {
+            $(this).hide();
+            $(this).removeClass('highlighted');
+          });
         }
       }
     });
@@ -48,6 +56,7 @@ $(document).ready(function(){
   });
 });
 
+
 $(document).ready(function(){
   $(".autosubmit-form").each(function(index, item) {
     $('input, select', item).change(function(e){
@@ -55,3 +64,12 @@ $(document).ready(function(){
     });
   });
 });
+
+$(document).ready(function(){
+  $('.subscribed').hover(function() {
+    $(this).text('Отписаться');
+  }, function(){
+    $(this).text('Подписан');
+  });
+});
+
